@@ -10,6 +10,7 @@ const { dataSource } = require('./data-source')
 async function clearAll() {
   const ORDER = [
     // TODO: 按「你的」FK 依賴順序填 entity name（先刪 Grade，再 Student，最後 Class / Subject）
+    "Grade", "Student", "Class", "Subject"
   ]
   for (const name of ORDER) {
     if (dataSource.hasMetadata(name)) {
@@ -31,6 +32,34 @@ async function main() {
   //      studentRepo.save({ name: '...', class: 班級物件 })
   //      gradeRepo.save({ score: 95, student: 學生物件, subject: 科目物件 })
   // ================================================================================
+  const classRepo = dataSource.getRepository("Class")
+  const subjectRepo = dataSource.getRepository("Subject")
+  const studentRepo = dataSource.getRepository("Student")
+  const gradeRepo = dataSource.getRepository("Grade")
+
+  const [first, second, third] = await classRepo.save([
+    {name: "一班"},
+    {name: "二班"},
+    {name: "三班"}
+  ])
+
+  const [math, science, english] = await subjectRepo.save([
+    {name: "數學"},
+    {name: "自然"},
+    {name: "英文"}
+  ])
+
+  const newStudents = await studentRepo.save([
+    {name: "Wang", class:first},
+    {name: "Li", class:second},
+    {name: "Chen", class:third}
+  ])
+
+  const newGrades = await gradeRepo.save([
+    {score: 95, student: newStudents[0], subject:math},
+    {score: 90, student: newStudents[1], subject: science},
+    {score: 85, student: newStudents[2], subject: english}
+  ])
 
   console.log('🌱 seed 完成')
   await dataSource.destroy()
