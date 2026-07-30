@@ -12,11 +12,12 @@ module.exports = new EntitySchema({
       generated: "uuid",
     },
     name: {
-      type: varchar(100),
+      type: "varchar",
+      length: "100",
       nullable: false,
     },
     description: {
-      description: "text",
+      type: "text",
       nullable: false,
     },
     start_at: {
@@ -31,6 +32,16 @@ module.exports = new EntitySchema({
       type: "int",
       nullable: false,
     },
+    created_at: {
+      type: "timestamp",
+      createDate: true,
+      nullable: false
+    },
+    updated_at: {
+      type: "timestamp",
+      createDate: true,
+      nullable: false
+    }
   },
   relations: {
     user: {

@@ -2,7 +2,7 @@ const { EntitySchema } = require("typeorm");
 
 module.exports = new EntitySchema({
   name: "User",
-  tableName: "USERS",
+  tableName: "USER",
   columns: {
     id: {
       type: "uuid",
@@ -10,18 +10,30 @@ module.exports = new EntitySchema({
       generated: "uuid",
     },
     name: {
-      type: varchar(50),
+      type: "varchar",
+      length: 50,
       nullable: false,
       unique: true,
     },
     email: {
-      type: varchar(320),
+      type: "varchar",
+      length: 320,
       nullable: false,
       unique: true,
     },
     role: {
-      type: varchar(20),
-      unique: true,
+      type: "varchar",
+      length: 20,
     },
+    created_at: {
+      type: "timestamp",
+      createDate: true,
+      nullable: false
+    },
+    updated_at: {
+      type: "timestamp",
+      updateDate: true,
+      nullable: false
+    }
   },
 });

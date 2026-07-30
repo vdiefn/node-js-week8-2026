@@ -7,10 +7,11 @@ module.exports = new EntitySchema({
     id: {
       type: "uuid",
       primary: true,
-      penerated: "uuid",
+      generated: "uuid",
     },
     name: {
-      type: varchar(50),
+      type: "varchar",
+      length: 50,
       nullable: false,
       unique: true,
     },
