@@ -13,6 +13,10 @@ module.exports = new EntitySchema({
     score: {
       type: "int",
       nullable: false
+    },
+    retake_score: {
+      type: "int",
+      nullable: true
     }
   },
   relations: {
