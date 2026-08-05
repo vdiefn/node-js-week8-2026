@@ -13,7 +13,6 @@ module.exports = new EntitySchema({
       type: "varchar",
       length: 50,
       nullable: false,
-      unique: true,
     },
     email: {
       type: "varchar",
@@ -28,12 +27,12 @@ module.exports = new EntitySchema({
     created_at: {
       type: "timestamp",
       createDate: true,
-      nullable: false
+      nullable: false,
     },
     updated_at: {
       type: "timestamp",
       updateDate: true,
-      nullable: false
-    }
+      nullable: false,
+    },
   },
 });
