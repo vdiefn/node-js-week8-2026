@@ -35,18 +35,18 @@ module.exports = new EntitySchema({
     created_at: {
       type: "timestamp",
       createDate: true,
-      nullable: false
+      nullable: false,
     },
     updated_at: {
       type: "timestamp",
-      createDate: true,
-      nullable: false
+      updateDate: true,
+      nullable: false,
     },
     meeting_url: {
       type: "varchar",
       length: 2048,
-      nullable: true
-    }
+      nullable: true,
+    },
   },
   relations: {
     user: {
